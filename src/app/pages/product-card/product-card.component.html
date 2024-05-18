@@ -26,11 +26,11 @@
 
     <div class="d-flex justify-content-between mb-0">
       <div class="text-warning">
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
+        <i [ngClass]="product.rating > 0 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+        <i [ngClass]="product.rating > 1 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+        <i [ngClass]="product.rating > 2 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+        <i [ngClass]="product.rating > 3 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+        <i [ngClass]="product.rating > 4 ? 'fa fa-star' : 'fa fa-star-o'"></i>
       </div>
       <button *ngIf="product.availableQty == 0" type="button" data-mdb-button-init data-mdb-ripple-init
         class="btn btn-secondary">Out Of Stock</button>

@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  categoryList = ['Laptop', 'IPad', 'Moniter', 'Camera', 'Headphone'];
+  categoryList = ['Laptop', 'IPad', 'Moniter', 'Camera', 'Headphone', 'Mobile', 'Tablet'];
+
   productList = [
     { productId: 1, rating: 3, isOffer: false, productName: 'HP Notebook', category: 'Laptop', price: 1099, discount: 12, availableQty: 3, imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp' },
     { productId: 2, rating: 1, isOffer: false, productName: 'HP Envy', category: 'Laptop', price: 1250, discount: 20, availableQty: 0, imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/5.webp' },
@@ -25,9 +26,27 @@ export class HomeComponent implements OnInit {
     { productId: 14, rating: 2, isOffer: false, productName: 'Dell Asp-343', category: 'Laptop', price: 67000, discount: 15, availableQty: 8, imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/7.webp' }
   ]
 
-  constructor() { }
+  fillterProduct: any[] = [];
+  selectedCategory: string = "";
+
+  constructor() {
+    this.fillterProduct = this.productList;
+  }
 
   ngOnInit(): void {
+  }
+
+  filterCategory(category: string) {
+
+    if (this.selectedCategory == category) {
+      this.selectedCategory = '';
+      this.fillterProduct = this.productList;
+    } else {
+      this.selectedCategory = category;
+      const products = this.productList.filter(p => p.category == category);
+      this.fillterProduct = products;
+    }
+
   }
 
 }

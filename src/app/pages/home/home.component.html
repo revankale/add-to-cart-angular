@@ -2,10 +2,13 @@
   <section style="background-color: #eee;">
     <div class="container py-5">
       <div class="rounded-circle d-flex align-items-center justify-content-center">
-        <button class="btn btn-outline-success mx-2" *ngFor="let item of categoryList; let i=index">{{item}}</button>
+        <button [class]="selectedCategory == item ? 'btn btn-success mx-2':'btn btn-outline-success mx-2'" *ngFor="let item of categoryList; let i=index" (click)="filterCategory(item)" >{{item}}</button>
       </div>
       <div class="row">
-        <div class="col-md-12 col-lg-3 pt-2 mb-4 mb-lg-0" *ngFor="let item of productList; let i = index">
+        <div *ngIf="fillterProduct.length == 0" class="col-md-12 col-lg-3 pt-2 mb-4 mb-lg-0">
+             <p>No Product Found</p>
+        </div>
+        <div class="col-md-12 col-lg-3 pt-2 mb-4 mb-lg-0" *ngFor="let item of fillterProduct; let i = index">
           <app-product-card [product]="item"></app-product-card>
         </div>
       </div>

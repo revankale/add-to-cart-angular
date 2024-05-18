@@ -1,0 +1,41 @@
+<div class="card">
+  <div *ngIf="product.isOffer"
+    class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+    style="width: 35px; height: 35px;position: absolute;right: 0;">
+    <p class="text-white mb-0 small">Offer</p>
+  </div>
+  <div
+    [class]="product.availableQty == 0 ? 'bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong':'bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong'"
+    style="width: 35px; height: 35px;position: absolute;left: 0;">
+    <span class="fw-bold">{{product.availableQty}}</span>
+  </div>
+
+
+  <img [src]="product.imageUrl" class="card-img-top" alt="Laptop" />
+
+  <div class="card-body pb-1">
+    <div class="d-flex justify-content-between">
+      <p class="small"><a href="#!" class="text-muted">{{product.category}}</a></p>
+      <p class="small text-danger"><s>${{product.price}}</s></p>
+    </div>
+
+    <div class="d-flex justify-content-between mb-3">
+      <h5 class="mb-0">{{product.productName}}</h5>
+      <h5 class="text-dark mb-0">${{getDiscountPrice(product)}}</h5>
+    </div>
+
+    <div class="d-flex justify-content-between mb-0">
+      <div class="text-warning">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <button *ngIf="product.availableQty == 0" type="button" data-mdb-button-init data-mdb-ripple-init
+        class="btn btn-secondary">Out Of Stock</button>
+      <button *ngIf="product.availableQty !== 0" type="button" data-mdb-button-init data-mdb-ripple-init
+        class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>

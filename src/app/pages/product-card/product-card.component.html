@@ -32,10 +32,8 @@
         <i [ngClass]="product.rating > 3 ? 'fa fa-star' : 'fa fa-star-o'"></i>
         <i [ngClass]="product.rating > 4 ? 'fa fa-star' : 'fa fa-star-o'"></i>
       </div>
-      <button *ngIf="product.availableQty == 0" type="button" data-mdb-button-init data-mdb-ripple-init
-        class="btn btn-secondary">Out Of Stock</button>
-      <button *ngIf="product.availableQty !== 0" type="button" data-mdb-button-init data-mdb-ripple-init
-        class="btn btn-primary">Buy Now</button>
+      <button *ngIf="product.availableQty == 0" type="button" class="btn btn-secondary">Out Of Stock</button>
+      <button *ngIf="product.availableQty !== 0" type="button" class="btn btn-primary" (click)="addToCart(product)">Buy Now</button>
     </div>
   </div>
 </div>

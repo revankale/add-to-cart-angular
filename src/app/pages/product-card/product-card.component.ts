@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -9,6 +10,8 @@ export class ProductCardComponent implements OnInit {
 
   @Input() product: any;
 
+  productService = inject(ProductService);
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +20,11 @@ export class ProductCardComponent implements OnInit {
   getDiscountPrice(product: any) {
     const totalValue = product.price * ((100 - product.discount) / 100)
     return totalValue.toFixed(0);
+  }
+
+  addToCart(productData:any){
+    debugger;
+    this.productService.onAddToCart$.next(productData);
   }
 
 }

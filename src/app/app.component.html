@@ -34,68 +34,39 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       <!-- Icon -->
-      <a class="link-secondary me-3" href="#">
+      <a class="link-secondary me-3" (click)="showCart()">
         <i class="fa fa-shopping-cart"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-end" style="position: absolute;
+      <div [class]="isCardVisible ? 'dropdown-menu dropdown-menu-end show':'dropdown-menu dropdown-menu-end'" style="position: absolute;
             right: 0;top:60px" aria-labelledby="navbarDropdownMenuAvatar">
         <div class="row">
           <div class="col-8">
             <h6>Cart Items</h6>
           </div>
           <div class="col-4 text-end">
-            <i class="fa fa-close p-2"></i>
+            <i (click)="showCart()" class="fa fa-close p-2"></i>
           </div>
         </div>
 
 
         <table class="table table-sm">
           <tbody>
-            <tr>
+            <tr *ngFor="let item of cartItem; let i= index">
               <td>
                 <div class="rounded"
-                  style="background-image: url(https://unsplash.com/photos/ZBwQ2bCbJjw/download?force=true&amp;w=640); width: 60px; height: 60px; background-size: cover;">
+                  style="background-image: url({{item.imageUrl}}); width: 60px; height: 60px; background-size: cover;">
                 </div>
               </td>
-              <td class="align-middle text-left">Spy Suit</td>
-              <td class="align-middle text-center">1 pieces</td>
-              <td class="align-middle text-right">$698</td>
+              <td class="align-middle text-left">{{item.productName}}</td>
+              <!-- <td class="align-middle text-center">1 pieces</td> -->
+              <td class="align-middle text-right">${{item.price}}</td>
               <td class="align-middle text-center">
-                <a href="#delete" data-toggle="modal" data-title="Delete your product ?">
+                <a (click)="removeProduct(i)" data-toggle="modal" data-title="Delete your product ?">
                   <i class="fa fa-trash"></i>
                 </a>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="rounded"
-                  style="background-image: url(https://unsplash.com/photos/ZBwQ2bCbJjw/download?force=true&amp;w=640); width: 60px; height: 60px; background-size: cover;">
-                </div>
-              </td>
-              <td class="align-middle text-left">Spy Suit</td>
-              <td class="align-middle text-center">1 pieces</td>
-              <td class="align-middle text-right">$698</td>
-              <td class="align-middle text-center">
-                <a href="#delete" data-toggle="modal" data-title="Delete your product ?">
-                  <i class="fa fa-trash"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="rounded"
-                  style="background-image: url(https://unsplash.com/photos/ZBwQ2bCbJjw/download?force=true&amp;w=640); width: 60px; height: 60px; background-size: cover;">
-                </div>
-              </td>
-              <td class="align-middle text-left">Spy Suit</td>
-              <td class="align-middle text-center">1 pieces</td>
-              <td class="align-middle text-right">$698</td>
-              <td class="align-middle text-center">
-                <a href="#delete" data-toggle="modal" data-title="Delete your product ?">
-                  <i class="fa fa-trash"></i>
-                </a>
-              </td>
-            </tr>
+
 
             <tr>
               <td colspan="4" class="align-middle text-right">Quantity</td>
